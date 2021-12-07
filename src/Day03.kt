@@ -31,7 +31,8 @@ fun main() {
             }
 
         }
-        return gammaRateBinary.joinToString(separator="").toInt(2) * epsilonRateBinary.joinToString(separator="").toInt(2)
+        return gammaRateBinary.joinToString(separator = "").toInt(2) * epsilonRateBinary.joinToString(separator = "")
+            .toInt(2)
     }
 
     fun part2(input: List<String>): Int {
@@ -43,11 +44,11 @@ fun main() {
         val targetC02Numbers = mutableListOf<String>()
 
         if (binaryOxygenCountZeros[0] > binaryOxygenCountOnes[0]) {
-            targetOxygenNumbers.addAll(input.filter {it[0] == '0' })
-            targetC02Numbers.addAll(input.filter {it[0] == '1' })
+            targetOxygenNumbers.addAll(input.filter { it[0] == '0' })
+            targetC02Numbers.addAll(input.filter { it[0] == '1' })
         } else {
-            targetOxygenNumbers.addAll(input.filter {it[0] == '1' })
-            targetC02Numbers.addAll(input.filter {it[0] == '0' })
+            targetOxygenNumbers.addAll(input.filter { it[0] == '1' })
+            targetC02Numbers.addAll(input.filter { it[0] == '0' })
         }
 
         var binaryCO2CountOnes = binaryOxygenCountOnes.copyOf()
@@ -58,9 +59,9 @@ fun main() {
 
         for (i in 1 until binaryOxygenCountZeros.size) {
             if (binaryOxygenCountZeros[i] > binaryOxygenCountOnes[i]) {
-                targetOxygenNumbers.removeAll(targetOxygenNumbers.filter {it[i] == '1' })
+                targetOxygenNumbers.removeAll(targetOxygenNumbers.filter { it[i] == '1' })
             } else {
-                targetOxygenNumbers.removeAll(targetOxygenNumbers.filter {it[i] == '0' })
+                targetOxygenNumbers.removeAll(targetOxygenNumbers.filter { it[i] == '0' })
             }
 
             if (targetOxygenNumbers.count() == 1) finalTargetOxygenBinary = targetOxygenNumbers.first()
@@ -71,9 +72,9 @@ fun main() {
 
         for (i in 1 until binaryCO2CountZeros.size) {
             if (binaryCO2CountZeros[i] > binaryCO2CountOnes[i]) {
-                targetC02Numbers.removeAll(targetC02Numbers.filter {it[i] == '0' })
+                targetC02Numbers.removeAll(targetC02Numbers.filter { it[i] == '0' })
             } else {
-                targetC02Numbers.removeAll(targetC02Numbers.filter {it[i] == '1' })
+                targetC02Numbers.removeAll(targetC02Numbers.filter { it[i] == '1' })
             }
 
             if (targetC02Numbers.count() == 1) finalTargetC02Binary = targetC02Numbers.first()

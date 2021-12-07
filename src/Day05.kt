@@ -17,9 +17,9 @@ fun main() {
 
     fun invertCoordinatesIfBigger(firstCoordinate: Int, secondCoordinate: Int): Pair<Int, Int> {
         if (firstCoordinate > secondCoordinate) {
-            return Pair (secondCoordinate, firstCoordinate)
+            return Pair(secondCoordinate, firstCoordinate)
         }
-        return Pair(firstCoordinate,secondCoordinate)
+        return Pair(firstCoordinate, secondCoordinate)
     }
 
     fun is45Angle(x1: Int, x2: Int, y1: Int, y2: Int): Boolean {
@@ -132,9 +132,7 @@ fun main() {
 
             if (x1 == x2 || y1 == y2) {
                 board = addHorizontalAndVerticalLines(x1, x2, y1, y2, board)
-            }
-            else if (is45Angle(x1,x2,y1,y2))
-            {
+            } else if (is45Angle(x1, x2, y1, y2)) {
                 board = addDiagonalLines(x1, x2, y1, y2, board)
             }
         }

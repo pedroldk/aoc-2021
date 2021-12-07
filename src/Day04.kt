@@ -43,12 +43,11 @@ fun main() {
         val boards = mutableListOf<MutableList<MutableList<Int>>>()
         var board = mutableListOf<MutableList<Int>>()
         for (i in 2 until input.size) {
-            if (input[i] == "")
-            {
+            if (input[i] == "") {
                 boards.add(board)
                 board = mutableListOf()
             } else {
-                board.add(input[i].trim().replace("  "," ").split(" ").map { it.toInt() }.toMutableList())
+                board.add(input[i].trim().replace("  ", " ").split(" ").map { it.toInt() }.toMutableList())
             }
         }
         boards.add(board)
@@ -90,12 +89,11 @@ fun main() {
         var boards = mutableListOf<MutableList<MutableList<Int>>>()
         var board = mutableListOf<MutableList<Int>>()
         for (i in 2 until input.size) {
-            if (input[i] == "")
-            {
+            if (input[i] == "") {
                 boards.add(board)
                 board = mutableListOf()
             } else {
-                board.add(input[i].trim().replace("  "," ").split(" ").map { it.toInt() }.toMutableList())
+                board.add(input[i].trim().replace("  ", " ").split(" ").map { it.toInt() }.toMutableList())
             }
         }
         boards.add(board)
