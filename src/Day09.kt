@@ -1,20 +1,6 @@
 fun main() {
     var heightMap = mutableListOf<List<Int>>()
 
-    fun getNeighbors(row: Int, col: Int): List<Pair<Int, Int>> {
-        return arrayOf((-1 to 0), (1 to 0), (0 to -1), (0 to 1))
-            .map { (dx, dy) -> row + dx to col + dy }
-            .filter { (x, y) -> x in heightMap.indices && y in heightMap.first().indices }
-    }
-
-    fun getBasinSize(row: Int, col: Int): List<Pair<Int, Int>> {
-        return getNeighbors(row, col)
-            .filterNot { (x, y) -> heightMap[x][y] == 9 }
-            .fold(listOf((row to col))) { points, (x, y) ->
-                points + if (heightMap[x][y] - heightMap[row][col] >= 1) getBasinSize(x, y) else emptyList()
-            }
-    }
-
     fun getLowestPoints(): MutableList<Pair<Int, Int>> {
         val lowestPoints = mutableListOf<Pair<Int, Int>>()
 
@@ -102,6 +88,20 @@ fun main() {
         return result
     }
 
+    fun getNeighbors(row: Int, col: Int): List<Pair<Int, Int>> {
+        return arrayOf((-1 to 0), (1 to 0), (0 to -1), (0 to 1))
+            .map { (dx, dy) -> row + dx to col + dy }
+            .filter { (x, y) -> x in heightMap.indices && y in heightMap.first().indices }
+    }
+
+    fun getBasinSize(row: Int, col: Int): List<Pair<Int, Int>> {
+        return getNeighbors(row, col)
+            .filterNot { (x, y) -> heightMap[x][y] == 9 }
+            .fold(listOf((row to col))) { points, (x, y) ->
+                points + if (heightMap[x][y] - heightMap[row][col] >= 1) getBasinSize(x, y) else emptyList()
+            }
+    }
+
     fun part2(input: List<String>): Int {
         heightMap = mutableListOf()
 
@@ -112,10 +112,9 @@ fun main() {
 
         val lowestPoints = getLowestPoints()
 
-        val threeLargestBasins =
-            lowestPoints.map { (rowIdx, colIdx) -> getBasinSize(rowIdx, colIdx).toSet().size }.sortedDescending()
-                .take(3)
-        return threeLargestBasins[0] * threeLargestBasins[1] * threeLargestBasins[2]
+        // Genius solution from https://github.com/ClouddJR
+        return lowestPoints.map { (rowIdx, colIdx) -> getBasinSize(rowIdx, colIdx).toSet().size }.sortedDescending()
+            .take(3).reduce { acc, i -> acc * i }
     }
 
     // test if implementation meets criteria from the description, like:
