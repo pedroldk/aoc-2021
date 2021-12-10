@@ -2,8 +2,7 @@ fun main() {
 
     fun part1(input: List<String>): Int {
         val invalidCharacters = mutableListOf<Char>()
-        for (line in input)
-        {
+        for (line in input) {
             val characters = line.toList()
             val stack = ArrayDeque<Char>()
             stack.add(characters[0])
@@ -33,10 +32,10 @@ fun main() {
         var result = 0
         for (i in invalidCharacters) {
             when (i) {
-                ')' -> result+=3
-                ']' -> result+=57
-                '}' -> result+=1197
-                '>' -> result+=25137
+                ')' -> result += 3
+                ']' -> result += 57
+                '}' -> result += 1197
+                '>' -> result += 25137
             }
         }
         return result
@@ -44,8 +43,7 @@ fun main() {
 
     fun part2(input: List<String>): Long {
         val scores = mutableListOf<Long>()
-        for (line in input)
-        {
+        for (line in input) {
             val characters = line.toList()
             val stack = ArrayDeque<Char>()
             stack.add(characters[0])
@@ -83,11 +81,11 @@ fun main() {
                             score = score * 5 + 2
                             stack.removeLast()
                         }
-                        '{' ->{
+                        '{' -> {
                             score = score * 5 + 3
                             stack.removeLast()
                         }
-                        '<' ->{
+                        '<' -> {
                             score = score * 5 + 4
                             stack.removeLast()
                         }
@@ -97,7 +95,7 @@ fun main() {
             }
         }
 
-        return scores.sorted()[scores.size/2]
+        return scores.sorted()[scores.size / 2]
     }
 
     // test if implementation meets criteria from the description, like:
